@@ -376,7 +376,8 @@ section {
 }
 
 footer {
-	background: #fff; /* 底部背景颜色 */
+	background: white; /* 底部背景颜色 */
+	color: gray; /* 底部文本颜色 */
 	bottom: 0;
 	font-size: .8em;
 	font-weight: bold;
