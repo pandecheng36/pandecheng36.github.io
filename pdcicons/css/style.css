@@ -2,7 +2,7 @@
 	align-items: center;
 	display: flex;
 	flex-direction: column;
-	height: 325px;  /* 卡片高度 */
+	height: 320px;  /* 卡片高度 */
 	justify-content: center;
 	overflow: hidden;
 	width: 272px;
@@ -18,7 +18,7 @@
 
 .app-icon-image {
 	align-items: center;
-	background: #fff; /* 卡片背景颜色 */
+	background: #fafafa; /* 卡片背景颜色 */
 	display: flex;
 	flex: 1;
 	justify-content: center;
@@ -30,7 +30,7 @@
 	display: flex;
 	flex: 1;
 	height: 72px;
-	margin: 0 24px;
+	margin: 0 30px;
 }
 
 .button {
@@ -42,7 +42,7 @@
 
 .card {
 	background: #fff; /* 卡片标题背景颜色 */
-	box-shadow: rgba(0, 0, 0, .2) 0 2px 2px;
+	box-shadow: rgba(0, 0, 0, .1) 0 2px 2px; /* 卡片阴影颜色 */
 }
 
 .container {
