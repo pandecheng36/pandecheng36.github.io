@@ -141,7 +141,7 @@ button {
 }
 
 h4 {
-	color: gray;
+	color: #212121; /* 卡片标题文本颜色 */
 	font: 500 18px sans-serif;  /* 卡片标题粗细和大小 */
 }
 
@@ -231,7 +231,7 @@ main {
 	display: block;
 	font-size: 1.1em;
 	font-weight: 400;
-	line-height: 2em;
+	line-height: 1.5em;
 	padding-bottom: 1em;
 	padding-left: 2em;
 	text-decoration: none;
@@ -378,11 +378,11 @@ section {
 footer {
 	background: white; /* 底部背景颜色 */
 	bottom: 0;
-	font-size: .8em;
+	font-size: .6em; /* 底部文本大小 */
 	font-weight: bold;
 	height: 50px;
 	margin-top: 50px;
-	padding-top: 50px;
+	padding-top: 30px;
 	text-align: center;
 	width: 100%;
 	color: gray; /* 底部文本颜色 */
