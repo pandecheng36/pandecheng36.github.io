@@ -378,11 +378,11 @@ section {
 footer {
 	background: white; /* 底部背景颜色 */
 	bottom: 0;
-	font-size: .6em; /* 底部文本大小 */
+	font-size: .8em; /* 底部文本大小 */
 	font-weight: bold;
 	height: 50px;
-	margin-top: 50px;
-	padding-top: 30px;
+	margin-top: 80px;
+	padding-top: 40px;
 	text-align: center;
 	width: 100%;
 	color: gray; /* 底部文本颜色 */
