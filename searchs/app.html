@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="theme-color" content="#8bc34a"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+    <title>搜应用</title>
+    <link rel='stylesheet' href='https://zavoloklom.github.io/material-design-iconic-font/css/docs.md-iconic-font.min.css'>
+    <link rel="stylesheet" href="style.css">
+    <script src="jquery-3.2.1.min.js"></script>
+	
+    <style type="text/css">
+body {
+    display: block;
+    margin-top: 12px;
+    margin-right: 12px;
+    margin-bottom: 100px;
+    margin-left: 12px;
+}
+		
+.main-search,.select-search {
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 0;
+    margin-left: 0px;
+    border-radius: 3px;
+    border: solid 1.2px #eee;
+    height: 2em;
+    margin-bottom: 0;
+}
+.main-search{
+    overflow: hidden;
+    position: relative;
+}
+.select-search{
+    margin-top: 12px ;
+    height: auto;
+    border-top: none;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    display: none;
+}
+#keyword {
+    width: 80%;
+    height: 2em;
+    line-height: 1em;
+    font-size: 1em;
+    border: none;
+    padding-left: 10px;
+}
+input:focus{
+    outline: none;
+}
+ul{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+li{
+    font-size: 1.1em;
+    line-height: 2.2em;
+    font-weight: 500;
+    color: #212121;
+    padding-left: 10px;
+    border-top: solid 1.2px #eee;
+}
+.search{
+    display: inline-block;
+    height: 2em;
+    width: 2em;
+    background-color: #3f51b5;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+.icon{
+    margin: 0.3em;
+    width: 1.4em;
+    height: 1.4em;
+}
+    </style>
+	
+</head>
+<body>
+	
+ <div class="fabs">
+  <a href="链接" class="fab light-green" tooltip="搜应用"><i class="sec zmdi zmdi-android animated"></i></a>
+  <a href="https://pandecheng36.github.io/searchs" class="fab blue" tooltip="搜索"><i class="sec zmdi zmdi-search animated"></i></a>
+  <a href="链接" class="fab pink" tooltip="搜音乐"><i class="sec zmdi zmdi-audio animated"></i></a>
+  <a href="链接" class="fab red" tooltip="搜视频"><i class="sec zmdi zmdi-videocam animated"></i></a>
+  <a href="链接" class="fab teal" tooltip="搜图标"><i class="sec zmdi zmdi-palette animated"></i></a>
+  <a href="https://pandecheng36.github.io/pdcpay" target="_blank" class="fab brown" tooltip="捐赠支持"><i class="sec zmdi zmdi-coffee animated"></i></a>
+  <a target="_blank" class="fab indigo" tooltip="搜图片"><i class="prime zmdi animated rotateIn zmdi-image"></i></a>
+ </div>
+  <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+
+<div class="main-search">
+    <input id="keyword" type="text" placeholder="输入搜索内容"/>
+    <div class="search">
+        <img class="icon" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABgCAQAAABIkb+zAAACAUlEQVR4Ae3azWoTURjG8VcpJHVnrkBXilBC1VsQP65iQHEl3kL1GtqQLEaYq1BBlOJal7Y0LvQG/NiICdr5u6kvBDsTzsDpOYPP/7mC3+KdAyHWnFJKKaWUYpsZc5acdUuOmDLG2me0bZOStNXMGHYFbPKWHNpn2A1QkkvTLoBt8qlmHA6YkVOTcMCcnDoMByzJqUU4ILcEEEAAAQQQQAABBBBAAAEEEEAAAQQQQAAB+g0oqfoMeM+QC3zoK+ALlzCMa/zoI+CYu9jJij4CnmD4qPoGeMF5DJ9fQnJAyYT1fWKE4fNLSA54x4ANXtHeghvYKSsSA/yrcpE5bT3AGlalBBxzBzvZFb7R1DOscX4JKQA7GD5u8avx6bKm+SUkADznHLayR/zbVy5ja1bEAYR/VYwpq9Xcw9aP6qwBP7mOnbINXuMBTzF84ZcQD3Afa9iIj/zt5erTFX4JsQAl1rKrfAfgMyMsYAXxAf50Wetu85sFN7HAVbEB/nSt3WMeYsHzS4gH8Kcr0vwSYgF2sMgrYgL86Yq6KhbAn65480uIAGh6uuJfQndA89OV4BL0w5YAAvxvf3w9IqcOwgFTcmo3HDCmJpdqtsIBxoxc2sO6AIbsk0NvGAQDnDCjJmU1ewywDgDfmAmHLBJ8OA/YZQtrn5H/BBBAAAEEEEAAAWLtD1J1quL61kkyAAAAAElFTkSuQmCC" alt="">
+    </div>
+</div>
+<div class="select-search">
+<ul class="search-ul">
+
+</ul>
+</div>
+
+	<script type="text/javascript" language="javascript">
+/*
+"title": "显示在候选列表",
+"urlLeft": "关键字左边的网址",
+"urlRight": "关键字右边的网址"
+*/
+var list = [
+    {
+        "title": "使用 百度图片 搜索",
+        "urlLeft": "http://image.baidu.com/search/index?z=&s=1&ct=201326592&cl=2&lm=-1&tn=baiduimage&word=",
+        "urlRight": ""
+    },
+    {
+        "title": "使用 谷歌图片 搜索（需fq）",
+        "urlLeft": "http://images.google.com/images?hl=zh-CN&source=hp&q=",
+        "urlRight": ""
+    },
+    {
+        "title": "使用 360图片 搜索",
+        "urlLeft": "http://image.so.com/i?q=",
+        "urlRight": ""
+    },
+    {
+        "title": "使用 搜狗图片 搜索",
+        "urlLeft": "http://pic.sogou.com/pics?query=",
+        "urlRight": ""
+    },
+    {
+        "title": "使用 必应图片 搜索",
+        "urlLeft": "https://cn.bing.com/images/search?q=",
+        "urlRight": ""
+    },
+    {
+        "title": "使用 Yahoo 搜索",
+        "urlLeft": "https://images.search.yahoo.com/search/images?p=",
+        "urlRight": ""
+    },
+    {
+        "title": "使用 Yandex 搜索",
+        "urlLeft": "https://yandex.com/images/search?text=",
+        "urlRight": ""
+    },
+    {
+        "title": "使用 DuckDuckGo 搜索（需fq）",
+        "urlLeft": "https://duckduckgo.com/?q=",
+        "urlRight": "&ia=images"
+    },
+    {
+        "title": "使用 中国搜索 搜索",
+        "urlLeft": "http://image.chinaso.com/so?q=",
+        "urlRight": ""
+    },
+    {
+        "title": "使用 新浪图片 搜索",
+        "urlLeft": "http://search.sina.com.cn/?q=",
+        "urlRight": "&c=img&sort=rel"
+    },
+    {
+        "title": "使用 pixiv 搜索（需fq）",
+        "urlLeft": "https://www.pixiv.net/search.php?word=",
+        "urlRight": ""
+    },
+    {
+        "title": "使用 SOOGIF 搜索",
+        "urlLeft": "https://www.soogif.com/search/1/",
+        "urlRight": ""
+    },
+    {
+        "title": "使用 搜狗表情 搜索",
+        "urlLeft": "https://pic.sogou.com/pic/emo/searchList.jsp?statref=home_form&keyword=",
+        "urlRight": ""
+    },
+    {
+        "title": "使用 发表情 搜索",
+        "urlLeft": "https://www.fabiaoqing.com/search/search/keyword/",
+        "urlRight": ""
+    },
+    {
+        "title": "使用 花瓣 搜索",
+        "urlLeft": "http://huaban.com/search/?q=",
+        "urlRight": ""
+    },
+    {
+        "title": "使用 堆糖 搜索",
+        "urlLeft": "https://www.duitang.com/search/?kw=",
+        "urlRight": "&type=feed"
+    }
+    
+];
+$(document).ready(function () {
+    init();
+    $(".select-search").hide();
+    $("#keyword").bind("input propertychange change", function (event) {
+        if ($('#keyword').val().length == 0) {
+            $(".select-search").hide();
+        } else {
+            $(".select-search").show();
+        }
+    });
+    $(document).on("click", ".search-web", function () {
+        var index = $(this).index();
+        var urlL = list[index].urlLeft;
+        var urlR = list[index].urlRight;
+        if ($('#keyword').val().length != 0) {
+            var urlOpen = urlL + $('#keyword').val() + urlR;
+            window.open(urlOpen);
+        }
+    });
+});
+function init() {
+    for (var i = 0; i < list.length; i++) {
+        var li = document.createElement("li");
+        li.setAttribute("class", "search-web");
+        li.innerHTML = list[i].title;
+        $(".search-ul")[0].appendChild(li);
+    }
+}
+	</script>
+
+
+
+</body>
+</html>
