@@ -17,7 +17,7 @@ body {
   display: block;
   width: 56px;/* 大按钮宽度 */
   height: 56px;/* 大按钮高度 */
-  border-radius: 20%; /* 按钮圆角大小 */
+  border-radius: 10%; /* 按钮圆角大小 */
   text-align: center;
   color: white;/* 图标颜色 */
   margin: 20px auto 0;/* 小按钮高度 */
@@ -30,7 +30,7 @@ body {
 
 .fab > i {
   font-size: 28px;/* 大按钮图标大小 */
-  line-height: 60px;/* 大按钮图标高度 */
+  line-height: 58px;/* 大按钮图标高度 */
   transition: all .2s ease-in-out;
   transition-delay: 2s;
 }
@@ -125,7 +125,7 @@ body {
 }
 
 .fab:not(:last-child) > i {
-  font-size: 18px;/* 小按钮图标大小 */
+  font-size: 20px;/* 小按钮图标大小 */
   line-height: 40px;/* 小按钮图标高度 */
   transition: all .3s ease-in-out;
 }
@@ -168,17 +168,17 @@ body {
   -webkit-border-radius: 2px;
   -moz-border-radius: 2px;
   border-radius: 6px;/* 文本气泡圆角大小 */
-  background-color: #585858;/* 气泡颜色 */
+  background-color: rgba(0, 0, 0, 0.5);/* 气泡颜色 */
   color: #fff;/* 气泡文本颜色 */
   content: attr(tooltip);
   font-size: 12px;
   visibility: hidden;
   opacity: 0;
-  padding: 5px 7px;
-  margin-right: 10px;
+  padding: 5px 8px;/* 气泡高度长度 */
+  margin-right: 12px;/* 气泡与图标的间距 */
   position: absolute;
   right: 100%;
-  bottom: 5%;
+  bottom: 6%;/* 气泡高度 */
   white-space: nowrap;
 }
 
