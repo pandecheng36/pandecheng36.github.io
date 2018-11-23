@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="theme-color" content="#8bc34a"/>
     <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-    <title>搜应用</title>
+    <title>快捷搜索-应用</title>
     <link rel='stylesheet' href='https://zavoloklom.github.io/material-design-iconic-font/css/docs.md-iconic-font.min.css'>
     <link rel="stylesheet" href="style.css">
     <script src="jquery-3.2.1.min.js"></script>
@@ -95,7 +95,7 @@ li{
   <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
 
 <div class="main-search">
-    <input id="keyword" type="text" placeholder="输入搜索内容"/>
+    <input id="keyword" type="text" placeholder="输入APP名称或包名"/>
     <div class="search">
         <img class="icon" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABgCAQAAABIkb+zAAACYElEQVR4Ae3aP2uTURTH8QuCtlNBwT/YIghF8E3oInStZFGUuvgPCbWhi+BbEMH6GlyEiqtQXANNCi2hi2hHIYjBNImBlOfrFvQhBw55cs4Dcr53zA38PtDppmnaqNDmO6ukgucBbY64Me33E9OeHwCMqBSa/4gMgAN/QBsKEx6TAQD7/oBVRgUJT8bzB9z0ByQqAmGR+7zlM0f0yMjo8Y0d3nCXi8L8WyRPgEw4y3MayGXUecYCiafSfHuATHhHH01d3svz7QEyAX3yfH9A4gXT9pBUPqBCn2nrsFI2oEpGkUaslQmoUryMtbIAt8mYRSeslAG4To9Z1eGqN+A0+8yyOqd8AS+ZdTVPwCX65Bp/lk97r8t5P8AWzBwAr7wA5/htAuix4AOogQkAqj6AJlbVPQCXsSvjgj3gHpbdsQdsYdlre8AOln2yB3zFsi/2gC6W/bIHnGDZyB7gfwLgfwIwzyZ7DBnSpMbcP59Zp90hA7jCIX/XYskXIO/QAOY5JF+LM74AxQ4RsMmkNnwBih0iYI9JNXwBih0iYMikBr4AxQ4RIOQOEApAAAIQgAAEIAABCEAAAhCAAAQgAAEIQAACYFAA/oPH3SaT2vUFKHaIgBqTWvcFKHaIgDla5Dvw/olJsUMEJJZo5b62SHIFKHYIgLF+gwYDBuyynlNbp9whABSnh2XH9r/Uf8SybXvANTpY9ZNlI0CO8IFjgz+ebZbL+GcPKf09/QlAAAIQgAAEIAABCEAA9O9I+nv+AP37jf6eP0D/fiPf8wfo35H09/wB+nck/T1/gP79Rr5X9PwBaEHg8DuPbl0AAAAASUVORK5CYII=" alt="">
     </div>
@@ -114,84 +114,99 @@ li{
 */
 var list = [
     {
-        "title": "使用 百度图片 搜索",
-        "urlLeft": "http://image.baidu.com/search/index?z=&s=1&ct=201326592&cl=2&lm=-1&tn=baiduimage&word=",
+        "title": "使用 酷安 搜索",
+        "urlLeft": "https://www.coolapk.com/search?q=",
         "urlRight": ""
     },
     {
-        "title": "使用 谷歌图片 搜索（需fq）",
-        "urlLeft": "http://images.google.com/images?hl=zh-CN&source=hp&q=",
+        "title": "酷安包名",
+        "urlLeft": "https://www.coolapk.com/apk/",
         "urlRight": ""
     },
     {
-        "title": "使用 360图片 搜索",
-        "urlLeft": "http://image.so.com/i?q=",
+        "title": "使用 应用宝 搜索",
+        "urlLeft": "http://sj.qq.com/myapp/search.htm?kw=",
         "urlRight": ""
     },
     {
-        "title": "使用 搜狗图片 搜索",
-        "urlLeft": "http://pic.sogou.com/pics?query=",
+        "title": "应用宝包名",
+        "urlLeft": "http://sj.qq.com/myapp/detail.htm?apkName=",
         "urlRight": ""
     },
     {
-        "title": "使用 必应图片 搜索",
-        "urlLeft": "https://cn.bing.com/images/search?q=",
+        "title": "使用 豌豆荚 搜索",
+        "urlLeft": "http://www.wandoujia.com/search?key=",
+        "urlRight": "&source=apps"
+    },
+    {
+        "title": "豌豆荚包名",
+        "urlLeft": "http://www.wandoujia.com/apps/",
         "urlRight": ""
     },
     {
-        "title": "使用 Yahoo 搜索",
-        "urlLeft": "https://images.search.yahoo.com/search/images?p=",
+        "title": "使用 应用汇 搜索",
+        "urlLeft": "http://www.appchina.com/sou/?keyword=",
         "urlRight": ""
     },
     {
-        "title": "使用 Yandex 搜索",
-        "urlLeft": "https://yandex.com/images/search?text=",
+        "title": "应用汇包名",
+        "urlLeft": "http://www.appchina.com/app/",
         "urlRight": ""
     },
     {
-        "title": "使用 DuckDuckGo 搜索（需fq）",
-        "urlLeft": "https://duckduckgo.com/?q=",
-        "urlRight": "&ia=images"
+        "title": "使用 PP助手 搜索",
+        "urlLeft": "https://www.25pp.com/ios/search_app_0/",
+        "urlRight": "/"
     },
     {
-        "title": "使用 中国搜索 搜索",
-        "urlLeft": "http://image.chinaso.com/so?q=",
+        "title": "使用 手机乐园 搜索",
+        "urlLeft": "http://s.shouji.com.cn/cse/search?q=",
+        "urlRight": "&entry=1&s=10599229482612753267&stp=1&nsid=2"
+    },
+    {
+        "title": "使用 百度手机助手 搜索",
+        "urlLeft": "http://shouji.baidu.com/s?wd=",
         "urlRight": ""
     },
     {
-        "title": "使用 新浪图片 搜索",
-        "urlLeft": "http://search.sina.com.cn/?q=",
-        "urlRight": "&c=img&sort=rel"
-    },
-    {
-        "title": "使用 pixiv 搜索（需fq）",
-        "urlLeft": "https://www.pixiv.net/search.php?word=",
+        "title": "使用 最美应用 搜索",
+        "urlLeft": "http://zuimeia.com/search/?keyword=",
         "urlRight": ""
     },
     {
-        "title": "使用 SOOGIF 搜索",
-        "urlLeft": "https://www.soogif.com/search/1/",
+        "title": "使用 Apkpure 搜索（需fq）",
+        "urlLeft": "https://apkpure.com/cn/search?q=",
         "urlRight": ""
     },
     {
-        "title": "使用 搜狗表情 搜索",
-        "urlLeft": "https://pic.sogou.com/pic/emo/searchList.jsp?statref=home_form&keyword=",
+        "title": "Apkpure包名（需fq）",
+        "urlLeft": "https://apkpure.com/cn/",
         "urlRight": ""
     },
     {
-        "title": "使用 发表情 搜索",
-        "urlLeft": "https://www.fabiaoqing.com/search/search/keyword/",
+        "title": "使用 GooglePlay 搜索（需fq）",
+        "urlLeft": "https://play.google.com/store/search?q=",
+        "urlRight": "&c=apps"
+    },
+    {
+        "title": "GooglePlay包名（需fq）",
+        "urlLeft": "https://play.google.com/store/apps/details?id=",
         "urlRight": ""
     },
     {
-        "title": "使用 花瓣 搜索",
-        "urlLeft": "http://huaban.com/search/?q=",
+        "title": "使用 APK-DL 搜索（需fq）",
+        "urlLeft": "https://apk-dl.com/search?q=",
         "urlRight": ""
     },
     {
-        "title": "使用 堆糖 搜索",
-        "urlLeft": "https://www.duitang.com/search/?kw=",
-        "urlRight": "&type=feed"
+        "title": "APK-DL包名（需fq）",
+        "urlLeft": "https://apk-dl.com/",
+        "urlRight": ""
+    },
+    {
+        "title": "使用 A2ZAPK 搜索（需fq）",
+        "urlLeft": "https://a2zapk.com/Search/",
+        "urlRight": "/"
     }
     
 ];
