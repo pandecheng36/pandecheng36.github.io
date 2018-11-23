@@ -178,7 +178,7 @@ body {
   margin-right: 12px;/* 气泡与图标的间距 */
   position: absolute;
   right: 100%;
-  bottom: 6%;/* 气泡高度 */
+  bottom: 12%;/* 气泡高度 */
   white-space: nowrap;
 }
 
