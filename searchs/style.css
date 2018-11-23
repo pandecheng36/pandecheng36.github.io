@@ -17,7 +17,7 @@ body {
   display: block;
   width: 56px;/* 大按钮宽度 */
   height: 56px;/* 大按钮高度 */
-  border-radius: 10%;/* 按钮圆角大小 */
+  border-radius: 20%; /* 按钮圆角大小 */
   text-align: center;
   color: white;/* 图标颜色 */
   margin: 20px auto 0;/* 小按钮高度 */
