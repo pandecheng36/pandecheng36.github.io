@@ -162,6 +162,16 @@ body {
   transition-delay: 80ms;
 }
 
+.fab:not(:last-child):nth-last-child(6) {
+  -webkit-transition-delay: 100ms;
+  transition-delay: 100ms;
+}
+
+.fab:not(:last-child):nth-last-child(7) {
+  -webkit-transition-delay: 120ms;
+  transition-delay: 120ms;
+}
+
 [tooltip]:before {
   font-family: 'Roboto';
   font-weight: 600;
