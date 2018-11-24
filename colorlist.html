@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>Hex color list</title>
+
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+
+		<style type="text/css">
+			@import url("https://fonts.googleapis.com/css?family=Anonymous+Pro:700");
+
+			body,
+			html {
+				height: 100%;
+			}
+
+			body {
+				background: #111111;
+				color: #999999;
+			}
+
+			.palette {
+				width: 100%;
+			}
+
+			.swatch {
+				display: block;
+				width: 100%;
+				margin: 0;
+				padding: 2rem;
+				border: 0;
+				outline: 0;
+				background-color: #000000;
+				color: #ffffff;
+				font-family: 'Roboto', sans-serif;
+				font-size: 3rem;
+				text-transform: uppercase;
+				transition: all 0.2s linear;
+			}
+		</style>
+
+	</head>
+
+	<body>
+
+		<div class="palette" id="palette"></div>
+
+
+
+		<script type="text/javascript" language="javascript">
+			var palette = document.getElementById('palette');
+			var colors = (localStorage.getItem('hexColors') || '').split(',');
+
+			function hex2rgb(hex) {
+				if (hex[0] === '#') {
+					hex = hex.substr(1);
+				}
+
+				if (hex.length === 6) {
+					return {
+						r: parseInt(hex.substr(0, 2), 16),
+						g: parseInt(hex.substr(2, 2), 16),
+						b: parseInt(hex.substr(4, 2), 16)
+					};
+
+				} else if (hex.length === 3) {
+					return {
+						r: parseInt(hex[0] + hex[0], 16),
+						g: parseInt(hex[1] + hex[1], 16),
+						b: parseInt(hex[2] + hex[2], 16)
+					};
+
+				}
+			}
+
+			function rgb2hex(r, g, b) {
+				function _convert(num) {
+					var hex = num.toString(16);
+					return hex.length === 1 ? '0' + hex : hex;
+				}
+				return [
+					_convert(r),
+					_convert(g),
+					_convert(b)
+				].
+				join('');
+			}
+
+			function rgb2hsv(r, g, b) {
+				var h, s, v;
+				var max = Math.max(r, g, b);
+				var min = Math.min(r, g, b);
+				var delta = max - min;
+
+				// hue
+				if (delta === 0) {
+					h = 0;
+				} else if (r === max) {
+					h = (g - b) / delta % 6;
+				} else if (g === max) {
+					h = (b - r) / delta + 2;
+				} else if (b === max) {
+					h = (r - g) / delta + 4;
+				}
+
+				h = Math.round(h * 60);
+				if (h < 0) {
+					h += 360;
+				}
+
+				// saturation
+				s = Math.round((max === 0 ? 0 : delta / max) * 100);
+
+				// value
+				v = Math.round(max / 255 * 100);
+
+				return {
+					h: h,
+					s: s,
+					v: v
+				};
+
+			};
+
+			function hsv2hsl(h, s, v) {
+				var hh = (200 - s) * v / 100;
+
+				return {
+					h: h,
+					s: s * v / (hh < 100 ? hh : 200 - hh),
+					l: hh / 2
+				};
+
+			};
+
+			function hex2hsl(hex) {
+				var rgb = hex2rgb(hex);
+				var hsv = rgb2hsv(rgb.r, rgb.g, rgb.b);
+				var hsl = hsv2hsl(hsv.h, hsv.s, hsv.v);
+				return hsl;
+			}
+
+			function normalizeColor(color) {
+				var rgb = hex2rgb(color.replace(/\s/g, ''));
+				if (!rgb) {
+					return null;
+				}
+				return '#' + rgb2hex(rgb.r, rgb.g, rgb.b);
+			}
+
+			function setColor(input, hex) {
+				var hsl = void 0;
+				var isLight = void 0;
+				try {
+					hsl = hex2hsl(hex);
+					isLight = hsl.l > 74;
+				} catch (e) {
+					hex = '#000000';
+					isLight = false;
+				}
+
+				input.style = ['background-color: ' +
+					hex + ';', 'color: ' + (
+						isLight ? '#000000' : '#ffffff') + ';'
+				].
+				join(' ');
+			}
+
+			function saveColors() {
+				colors = [].map.call(document.querySelectorAll('input.swatch'), function(swatch) {
+					return swatch.value;
+				});
+				localStorage.setItem('hexColors', colors.join(','));
+				return colors;
+			}
+
+			function createInput() {
+				var value = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '#';
+				var parentElement = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+				var insertBefore = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
+				var focus = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : false;
+				var input = document.createElement('input');
+				input.className = 'swatch';
+				input.value = value;
+				input.autocomplete = 'off';
+				input.autocorrect = 'off';
+				input.autocapitalize = 'off';
+				input.spellcheck = false;
+				if (parentElement) {
+					if (insertBefore) {
+						parentElement.insertBefore(input, insertBefore);
+					} else {
+						parentElement.appendChild(input);
+					}
+				}
+				activateInput(input, focus);
+				return input;
+			}
+
+			function activateInput(input) {
+				var focus = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
+				input.addEventListener('keydown', function(event) {
+					if (event.which === 82 && event.metaKey || event.ctrlKey) {
+						// allow reload
+					} else if (event.which === 13) {
+						var newInput = createInput('#', input.parentElement, event.shiftKey ? input : input.nextElementSibling, true);
+					} else if (event.which === 8) {
+						if (input.value === '' && palette.childElementCount > 1) {
+							var nextFocus = input.previousElementSibling || input.nextElementSibling;
+							var nextSelect = input.previousElementSibling ? nextFocus.value.length : 0;
+							if (nextFocus) {
+								nextFocus.focus();
+								nextFocus.setSelectionRange(nextSelect, nextSelect);
+							}
+							input.remove();
+							event.preventDefault();
+						}
+					} else if (event.which === 46) {
+						if (input.value === '' && palette.childElementCount > 1) {
+							var _nextFocus = input.nextElementSibling || input.previousElementSibling;
+							var _nextSelect = input.nextElementSibling ? 0 : _nextFocus.value.length;
+							if (_nextFocus) {
+								_nextFocus.focus();
+								_nextFocus.setSelectionRange(_nextSelect, _nextSelect);
+							}
+							input.remove();
+							event.preventDefault();
+						}
+					} else if (event.which === 37 || event.which === 38) {
+						var _nextFocus2 = input.previousElementSibling;
+						var _nextSelect2 = input.previousElementSibling && event.which === 37 ? _nextFocus2.value.length : 0;
+						if (input.selectionStart <= 0 && _nextFocus2) {
+							_nextFocus2.focus();
+							_nextFocus2.setSelectionRange(_nextSelect2, _nextSelect2);
+							event.preventDefault();
+						}
+					} else if (event.which === 39 || event.which === 40) {
+						var _nextFocus3 = input.nextElementSibling;
+						var _nextSelect3 = input.nextElementSibling && event.which === 40 ? _nextFocus3.value.length : 0;
+						if (input.selectionStart >= input.value.length && _nextFocus3) {
+							_nextFocus3.focus();
+							_nextFocus3.setSelectionRange(_nextSelect3, _nextSelect3);
+							event.preventDefault();
+						}
+					} else if ([9, 33, 34, 35, 36].indexOf(event.which) >= 0) {
+						// cool
+					} else if (event.key === 'v' && event.metaKey) {
+						// pasting
+					} else if (!event.key.match(/^[#a-f0-9]$/i)) {
+						event.preventDefault();
+					}
+				});
+
+				input.addEventListener('input', function() {
+					setColor(input, normalizeColor(input.value));
+					saveColors();
+				});
+
+				setColor(input, input.value);
+
+				if (focus) {
+					input.focus();
+					input.setSelectionRange(input.value.length, input.value.length);
+				}
+
+				input.addEventListener('paste', function(event) {
+					var text = event.clipboardData.getData('text');
+					var colors = text.split(/[,\s]/g).filter(function(v) {
+						return v;
+					});
+					if (colors.length > 1) {
+						var lastInput = input;
+						colors.forEach(function(color) {
+							lastInput = createInput(color, palette, lastInput.nextElementSibling, true);
+						});
+						event.preventDefault();
+					}
+				});
+			}
+
+			colors = colors.filter(function(color) {
+				return color;
+			});
+
+			if (!(colors && colors.length)) {
+				colors = [
+					'#F44336',
+					'#E91E63',
+					'#9C27B0',
+					'#673AB7',
+					'#3F51B5',
+					'#2196F3',
+					'#03A9F4',
+					'#00BCD4',
+					'#009688',
+					'#4CAF50',
+					'#8BC34A',
+					'#CDDC39',
+					'#FFEB3B',
+					'#FFC107',
+					'#FF9800',
+					'#FF5722',
+					'#795548',
+					'#9E9E9E',
+					'#607D8B',
+					'#000000',
+					'#ffffff'
+				];
+
+			}
+
+			colors.forEach(function(color) {
+				createInput(color, palette, null, true);
+			});
+
+			document.body.addEventListener('click', function(event) {
+				if (event.target === document.body) {
+					var input = document.querySelector('input:last-child');
+					input.focus();
+				}
+			});
+		</script>
+
+	</body>
+
+</html>
