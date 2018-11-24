@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="theme-color" content="#e91e63"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+    <title>快捷搜索-音乐</title>
+    <link rel='stylesheet' href='https://zavoloklom.github.io/material-design-iconic-font/css/docs.md-iconic-font.min.css'>
+    <link rel="stylesheet" href="style.css">
+    <script src="jquery-3.2.1.min.js"></script>
+	
+    <style type="text/css">
+body {
+    display: block;
+    margin-top: 12px;
+    margin-right: 12px;
+    margin-bottom: 100px;
+    margin-left: 12px;
+}
+		
+.main-search,.select-search {
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 0;
+    margin-left: 0px;
+    border-radius: 3px;
+    border: solid 1.2px #eee;
+    height: 2em;
+    margin-bottom: 0;
+}
+.main-search{
+    overflow: hidden;
+    position: relative;
+}
+.select-search{
+    margin-top: 12px ;
+    height: auto;
+    border-top: none;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    display: none;
+}
+#keyword {
+    width: 80%;
+    height: 2em;
+    line-height: 1em;
+    font-size: 1em;
+    border: none;
+    padding-left: 10px;
+}
+input:focus{
+    outline: none;
+}
+ul{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+li{
+    font-size: 1.1em;
+    line-height: 2.2em;
+    font-weight: 500;
+    color: #212121;
+    padding-left: 10px;
+    border-top: solid 1.2px #eee;
+}
+.search{
+    display: inline-block;
+    height: 2em;
+    width: 2em;
+    background-color: #8bc34a;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+.icon{
+    margin: 0.3em;
+    width: 1.4em;
+    height: 1.4em;
+}
+    </style>
+	
+</head>
+<body>
+	
+ <div class="fabs">
+  <a href="https://pandecheng36.github.io/searchs/app" class="fab light-green" tooltip="搜应用"><i class="sec zmdi zmdi-search android"></i></a>
+  <a href="https://pandecheng36.github.io/searchs/image" class="fab indigo" tooltip="搜图片"><i class="sec zmdi zmdi-image animated"></i></a>
+  <a href="https://pandecheng36.github.io/searchs" class="fab blue" tooltip="搜索"><i class="sec zmdi zmdi-search animated"></i></a>
+  <a href="https://pandecheng36.github.io/searchs/video" class="fab red" tooltip="搜视频"><i class="sec zmdi zmdi-videocam animated"></i></a>
+  <a href="https://pandecheng36.github.io/searchs/icon" class="fab teal" tooltip="搜图标"><i class="sec zmdi zmdi-palette animated"></i></a>
+  <a href="https://pandecheng36.github.io/pdcpay" target="_blank" class="fab brown" tooltip="捐赠支持"><i class="sec zmdi zmdi-coffee animated"></i></a>
+  <a target="_blank" class="fab pink" tooltip="搜音乐"><i class="prime zmdi animated rotateIn zmdi-audio"></i></a>
+ </div>
+  <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+
+<div class="main-search">
+    <input id="keyword" type="text" placeholder="输入音乐名称或歌手名称"/>
+    <div class="search">
+        <img class="icon" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABgCAQAAABIkb+zAAABV0lEQVR4Ae3UwUoCURTG8bMzM9u3VNNl0asERr6QUEjrEcPXEWwhhe8gYwYtVJiR+PcCIt0RmXvo+38vcH+Le+x0KaWUUkopQrOwGaeeAAIUnwACCCCAAAIIIIAA4Q8UQAABBBBAAAEEEEAAAQQQQAABBBDACaBOjxFTVuT88MUbCfdUfQA6jNmyr29euIobUGXAjkNtYga0mRNeNIA7luAX0GYJfgHnzMEzYACeAR12vgFj8Ay4ZOsb0APfgJF3wNQ7YOUdkP9vQFY+4JNjSr1/4on3M5qUD3jkmLrlA+psKNqaWvkA45WiDbEYANfkFCmjGQfAeKZIfSwWQJUPQptRiQdgtEgJaUEDiwlg3AYQFtxgsQGMFu/8pRkNLEaAccYTOYfK6FPBYgUYRosRa/a1ZkgTw+IGGMYFDyRMSMnISJmQ0KWGYQ4AARNAgLgmgAACCCCAAL9fqsHaQnbhNwAAAABJRU5ErkJggg==" alt="">
+    </div>
+</div>
+<div class="select-search">
+<ul class="search-ul">
+
+</ul>
+</div>
+
+	<script type="text/javascript" language="javascript">
+/*
+"title": "显示在候选列表",
+"urlLeft": "关键字左边的网址",
+"urlRight": "关键字右边的网址"
+*/
+var list = [
+    {
+        "title": "使用 酷安 搜索",
+        "urlLeft": "https://www.coolapk.com/search?q=",
+        "urlRight": ""
+    },
+    {
+        "title": "酷安包名",
+        "urlLeft": "https://www.coolapk.com/apk/",
+        "urlRight": ""
+    },
+    {
+        "title": "使用 应用宝 搜索",
+        "urlLeft": "http://sj.qq.com/myapp/search.htm?kw=",
+        "urlRight": ""
+    },
+    {
+        "title": "应用宝包名",
+        "urlLeft": "http://sj.qq.com/myapp/detail.htm?apkName=",
+        "urlRight": ""
+    },
+    {
+        "title": "使用 豌豆荚 搜索",
+        "urlLeft": "http://www.wandoujia.com/search?key=",
+        "urlRight": "&source=apps"
+    },
+    {
+        "title": "豌豆荚包名",
+        "urlLeft": "http://www.wandoujia.com/apps/",
+        "urlRight": ""
+    },
+    {
+        "title": "使用 应用汇 搜索",
+        "urlLeft": "http://www.appchina.com/sou/?keyword=",
+        "urlRight": ""
+    },
+    {
+        "title": "应用汇包名",
+        "urlLeft": "http://www.appchina.com/app/",
+        "urlRight": ""
+    },
+    {
+        "title": "使用 PP助手 搜索",
+        "urlLeft": "https://www.25pp.com/ios/search_app_0/",
+        "urlRight": "/"
+    },
+    {
+        "title": "使用 手机乐园 搜索",
+        "urlLeft": "http://s.shouji.com.cn/cse/search?q=",
+        "urlRight": "&entry=1&s=10599229482612753267&stp=1&nsid=2"
+    },
+    {
+        "title": "使用 百度手机助手 搜索",
+        "urlLeft": "http://shouji.baidu.com/s?wd=",
+        "urlRight": ""
+    },
+    {
+        "title": "使用 最美应用 搜索",
+        "urlLeft": "http://zuimeia.com/search/?keyword=",
+        "urlRight": ""
+    },
+    {
+        "title": "使用 Apkpure 搜索（需fq）",
+        "urlLeft": "https://apkpure.com/cn/search?q=",
+        "urlRight": ""
+    },
+    {
+        "title": "Apkpure包名（需fq）",
+        "urlLeft": "https://apkpure.com/cn/",
+        "urlRight": ""
+    },
+    {
+        "title": "使用 GooglePlay 搜索（需fq）",
+        "urlLeft": "https://play.google.com/store/search?q=",
+        "urlRight": "&c=apps"
+    },
+    {
+        "title": "GooglePlay包名（需fq）",
+        "urlLeft": "https://play.google.com/store/apps/details?id=",
+        "urlRight": ""
+    },
+    {
+        "title": "使用 APK-DL 搜索（需fq）",
+        "urlLeft": "https://apk-dl.com/search?q=",
+        "urlRight": ""
+    },
+    {
+        "title": "APK-DL包名（需fq）",
+        "urlLeft": "https://apk-dl.com/",
+        "urlRight": ""
+    },
+    {
+        "title": "使用 A2ZAPK 搜索（需fq）",
+        "urlLeft": "https://a2zapk.com/Search/",
+        "urlRight": "/"
+    }
+    
+];
+$(document).ready(function () {
+    init();
+    $(".select-search").hide();
+    $("#keyword").bind("input propertychange change", function (event) {
+        if ($('#keyword').val().length == 0) {
+            $(".select-search").hide();
+        } else {
+            $(".select-search").show();
+        }
+    });
+    $(document).on("click", ".search-web", function () {
+        var index = $(this).index();
+        var urlL = list[index].urlLeft;
+        var urlR = list[index].urlRight;
+        if ($('#keyword').val().length != 0) {
+            var urlOpen = urlL + $('#keyword').val() + urlR;
+            window.open(urlOpen);
+        }
+    });
+});
+function init() {
+    for (var i = 0; i < list.length; i++) {
+        var li = document.createElement("li");
+        li.setAttribute("class", "search-web");
+        li.innerHTML = list[i].title;
+        $(".search-ul")[0].appendChild(li);
+    }
+}
+	</script>
+
+
+
+</body>
+</html>
