@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="theme-color" content="#F44336"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+    <title>快捷搜索-视频</title>
+    <link rel='stylesheet' href='https://zavoloklom.github.io/material-design-iconic-font/css/docs.md-iconic-font.min.css'>
+    <link rel="stylesheet" href="style.css">
+    <script src="jquery-3.2.1.min.js"></script>
+	
+    <style type="text/css">
+body {
+    display: block;
+    margin-top: 12px;
+    margin-right: 12px;
+    margin-bottom: 100px;
+    margin-left: 12px;
+}
+		
+.main-search,.select-search {
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 0;
+    margin-left: 0px;
+    border-radius: 3px;
+    border: solid 1.2px #eee;
+    height: 2em;
+    margin-bottom: 0;
+}
+.main-search{
+    overflow: hidden;
+    position: relative;
+}
+.select-search{
+    margin-top: 12px ;
+    height: auto;
+    border-top: none;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    display: none;
+}
+#keyword {
+    width: 80%;
+    height: 2em;
+    line-height: 1em;
+    font-size: 1em;
+    border: none;
+    padding-left: 10px;
+}
+input:focus{
+    outline: none;
+}
+ul{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+li{
+    font-size: 1.1em;
+    line-height: 2.2em;
+    font-weight: 500;
+    color: #212121;
+    padding-left: 10px;
+    border-top: solid 1.2px #eee;
+}
+.search{
+    display: inline-block;
+    height: 2em;
+    width: 2em;
+    background-color: #F44336;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+.icon{
+    margin: 0.3em;
+    width: 1.4em;
+    height: 1.4em;
+}
+    </style>
+	
+</head>
+<body>
+	
+ <div class="fabs">
+  <a href="https://pandecheng36.github.io/searchs/app" class="fab light-green" tooltip="搜应用"><i class="sec zmdi zmdi-android animated"></i></a>
+  <a href="https://pandecheng36.github.io/searchs/image" class="fab indigo" tooltip="搜图片"><i class="sec zmdi zmdi-image animated"></i></a>
+  <a href="https://pandecheng36.github.io/searchs/music" class="fab pink" tooltip="搜音乐"><i class="sec zmdi zmdi-audio animated"></i></a>
+  <a href="https://pandecheng36.github.io/searchs" class="fab blue" tooltip="搜索"><i class="sec zmdi zmdi-search animated"></i></a>
+  <a href="https://pandecheng36.github.io/searchs/icon" class="fab teal" tooltip="搜图标"><i class="sec zmdi zmdi-palette animated"></i></a>
+  <a href="https://pandecheng36.github.io/pdcpay" target="_blank" class="fab brown" tooltip="捐赠支持"><i class="sec zmdi zmdi-coffee animated"></i></a>
+  <a target="_blank" class="fab rad" tooltip="搜视频"><i class="prime zmdi animated rotateIn zmdi-videocam"></i></a>
+ </div>
+  <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+
+<div class="main-search">
+    <input id="keyword" type="text" placeholder="输入搜索内容"/>
+    <div class="search">
+        <img class="icon" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABgCAQAAABIkb+zAAADWklEQVR4Ae3BzWtUVwDG4TebTLoN2UvB6QwudOKEoB3d11TcdRF0Iy1D3E++v7osFSKKMWav6F8glWAQWyVYi7bbNqOiCzUkguBEwx1+baEFz8kZzcy952Yu3OeRUqlUKpVKpVItIs8QCyxTZZ0ttlinyi0WGCKn9sZBzvGcj3nGHAW1Hzo4wQo7dY/jaif084Bm3adP7YAu5qnTijoX6NLuIsfvhPGIrHYPR3lNWBuUtDv4mk2iUOMrxY+jbNLIX8wzSIFuOumkmwKDXGKVRmp8qXiR4zUuAVc4pAY4zFUCXDbIKj58xh+43GCvPoEcN3F5SEZxYZ7t3nJaO8R31NjuvOJBP3VsL+hVEyjyEludg/KPDh5ge0FWTSLHK2wr8o8T2N7SqxbQxya2AfnGCrbTahFlbHflF73YbigElrDtl0+cwxSwVyGQJ8B0Vj7xHNMVhcQ1TE/lD3lshxQSJWxZ+cIQpj8VAaqYyvKFBUzzigCXMV2ULyxjGlQEOIlpSb5QxVRQBChiWpUvrGPqVgTowbQmX9jC1KkIkMH0Xr6whalTESCDKZAvrGPqVgTowfRGvlDFVFAEKGKqyhduYRpUBDiF6bZ8YQHTJUWARUyL8oUhTKsKjQ4eYyrLF3LYDiskjmDLyx+eYbqqkLiO6Yl8Yg5TwBcKgX3UMc3JJwrYflIILGM7IL+4h+1btYgz2O7IN45jq1FUC+jnHbZj8o/72F6SU5PIs4btjuJAH3Vsr+hTE+hnDVtAr+LBBbbbpKwd4gzv2O4HxYUuHuGyRF6fwD6WcfmVTsWHLBu4BFyjpAY4wnXquKyzR/GiRI1GqlzmJEV6yJChhyKnWOQxjQV8o7hxjBrRm1V8KLFBWBsEmGYUH7I8JIzf+JxBbDOKDxnOU6cVAT+S0T/YblpxosgKzfqFov6Dy7TixQB32amfGdAHcJtS3NjPWZ7yMU+Y44AsfI/bpHYDWcpcZIlV1nhPwBuq3GaRMnk1wCxuk0oKZnGbUFIwg9uEkoJp3MaVFEzjNqakYAq3MSUFU7iNKimYxG1UScEEbiNKCiZwG1ZSMI7bsJKCcdwqSgrGcKsoKRjFpaLkYBRbRcnCCB+qKHkY4X8VJRPD/Kui5KJCRalUKpVKpVKpVJv7GyLJQeO5R1sYAAAAAElFTkSuQmCC" alt="">
+    </div>
+</div>
+<div class="select-search">
+<ul class="search-ul">
+
+</ul>
+</div>
+
+	<script type="text/javascript" language="javascript">
+/*
+"title": "显示在候选列表",
+"urlLeft": "关键字左边的网址",
+"urlRight": "关键字右边的网址"
+*/
+var list = [
+    {
+        "title": "使用 百度 搜索",
+        "urlLeft": "https://www.baidu.com/s?word=",
+        "urlRight": ""
+    },
+    {
+        "title": "使用 谷歌 搜索（需fq）",
+        "urlLeft": "https://www.google.com/search?q=",
+        "urlRight": ""
+    },
+    {
+        "title": "使用 360 搜索",
+        "urlLeft": "https://www.so.com/s?q=",
+        "urlRight": ""
+    },
+    {
+        "title": "使用 搜狗 搜索",
+        "urlLeft": "https://www.sogou.com/web?query=",
+        "urlRight": ""
+    },
+    {
+        "title": "使用 必应 搜索",
+        "urlLeft": "https://www.bing.com/search?q=",
+        "urlRight": ""
+    },
+    {
+        "title": "使用 Yahoo 搜索",
+        "urlLeft": "https://search.yahoo.com/search?p=",
+        "urlRight": ""
+    },
+    {
+        "title": "使用 Yandex 搜索",
+        "urlLeft": "https://yandex.com/search/?text=",
+        "urlRight": ""
+    },
+    {
+        "title": "使用 DuckDuckGo 搜索（需fq）",
+        "urlLeft": "https://duckduckgo.com/?q=",
+        "urlRight": ""
+    },
+    {
+        "title": "使用 中国搜索 搜索",
+        "urlLeft": "http://www.chinaso.com/search/pagesearch.htm?q=",
+        "urlRight": ""
+    },
+    {
+        "title": "使用 伍佰亿 搜索",
+        "urlLeft": "http://www.wubaiyi.com/s?wd=",
+        "urlRight": ""
+    },
+    {
+        "title": "使用 酷安 搜索",
+        "urlLeft": "https://www.coolapk.com/search?q=",
+        "urlRight": ""
+    },
+    {
+        "title": "使用 哔哩哔哩 搜索",
+        "urlLeft": "https://search.bilibili.com/all?keyword=",
+        "urlRight": ""
+    },
+    {
+        "title": "使用 淘宝 搜索",
+        "urlLeft": "https://s.taobao.com/search?q=",
+        "urlRight": ""
+    },
+    {
+        "title": "使用 天猫 搜索",
+        "urlLeft": "https://list.tmall.com/search_product.htm?q=",
+        "urlRight": ""
+    },
+    {
+        "title": "使用 京东 搜索",
+        "urlLeft": "https://search.jd.com/Search?keyword=",
+        "urlRight": ""
+    },
+    {
+        "title": "使用 微博 搜索",
+        "urlLeft": "http://s.weibo.com/weibo/",
+        "urlRight": ""
+    },
+    {
+        "title": "使用 Github 搜索",
+        "urlLeft": "https://github.com/search?utf8=✓&q=",
+        "urlRight": ""
+    },
+    {
+        "title": "使用 知乎 搜索",
+        "urlLeft": "https://www.zhihu.com/search?type=content&q=",
+        "urlRight": ""
+    },
+    {
+        "title": "使用 维基百科 搜索",
+        "urlLeft": "https://zh.wikipedia.org/wiki/",
+        "urlRight": ""
+    }
+];
+$(document).ready(function () {
+    init();
+    $(".select-search").hide();
+    $("#keyword").bind("input propertychange change", function (event) {
+        if ($('#keyword').val().length == 0) {
+            $(".select-search").hide();
+        } else {
+            $(".select-search").show();
+        }
+    });
+    $(document).on("click", ".search-web", function () {
+        var index = $(this).index();
+        var urlL = list[index].urlLeft;
+        var urlR = list[index].urlRight;
+        if ($('#keyword').val().length != 0) {
+            var urlOpen = urlL + $('#keyword').val() + urlR;
+            window.open(urlOpen);
+        }
+    });
+});
+function init() {
+    for (var i = 0; i < list.length; i++) {
+        var li = document.createElement("li");
+        li.setAttribute("class", "search-web");
+        li.innerHTML = list[i].title;
+        $(".search-ul")[0].appendChild(li);
+    }
+}
+	</script>
+
+
+
+</body>
+</html>
