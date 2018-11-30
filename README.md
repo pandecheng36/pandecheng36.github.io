@@ -15,3 +15,5 @@ PDCICONS：<https://pandecheng36.github.io/pdcicons>
 十六进制颜色表：<https://pandecheng36.github.io/colorlist>
 
 酷安图标包：<https://pandecheng36.github.io/coolapk-iconpack>
+
+表情下载：<https://pandecheng36.github.io/sticker>
