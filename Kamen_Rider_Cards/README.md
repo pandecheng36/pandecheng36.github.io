@@ -1,5 +1,0 @@
-
-#假面骑士Decade卡片
-|![](https://vignette.wikia.nocookie.net/kamenrider/images/6/6c/Kamen_Ride_Decade.jpg)|![](https://vignette.wikia.nocookie.net/kamenrider/images/6/6c/Kamen_Ride_Decade.jpg)|![](https://vignette.wikia.nocookie.net/kamenrider/images/6/6c/Kamen_Ride_Decade.jpg)(https://vignette.wikia.nocookie.net/kamenrider/images/6/6c/Kamen_Ride_Decade.jpg)
-| :------------: | :------------: | :------------: | :------------: | :------------: | :------------: |
-|![](https://vignette.wikia.nocookie.net/kamenrider/images/6/6c/Kamen_Ride_Decade.jpg)|![](https://vignette.wikia.nocookie.net/kamenrider/images/6/6c/Kamen_Ride_Decade.jpg)|![](https://vignette.wikia.nocookie.net/kamenrider/images/6/6c/Kamen_Ride_Decade.jpg)|![](https://vignette.wikia.nocookie.net/kamenrider/images/6/6c/Kamen_Ride_Decade.jpg)|![](https://vignette.wikia.nocookie.net/kamenrider/images/6/6c/Kamen_Ride_Decade.jpg)|![](https://vignette.wikia.nocookie.net/kamenrider/images/6/6c/Kamen_Ride_Decade.jpg)|![]
